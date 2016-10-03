@@ -214,7 +214,6 @@ arr.push(new MangoTree())//array ke 3
 
 var groove = new TreeGrove(arr)
 console.log(groove.trees())
-// console.log(groove.mature_trees())
 do{
   for (var i = 0; i<arr.length; i++){
     arr[i].grow()
