@@ -1,7 +1,7 @@
 "use strict"
 class FruitTree {
-  constructor(){
-    this.umur = 0
+  constructor(start_tanam){
+    this.umur = start_tanam || 0
     this.tinggi = 0
     this.sehat = true
     this.jumlah_buah = []
@@ -170,9 +170,15 @@ class TreeGrove {
     for (var i = 0; i < this.groove.length; i++){
       // result[this.groove[i]['umur']] = this.groove[i]['buah']['name']
       // console.log(result)
-      result.push("Pohon " + this.groove[i]['buah']['name'] + " umurnya " + this.groove[i]['umur'] )
+      if(this.groove[i]['sehat'] === true){
+        result.push("Pohon " + this.groove[i]['buah']['name'] + " umurnya " + this.groove[i]['umur'] )
+      }
     }
-    return result
+    if (result.length === 0){
+      return "Pohon sudah mati semua :("
+    }else {
+      return result
+    }
   }
 
   trees(){
@@ -191,7 +197,11 @@ class TreeGrove {
         trees.push("Pohon " + this.groove[i]['buah']['name'])
       }
     }
-    return trees
+    if (trees.length === 0){
+      return "Semua pohon sudah tidak berbuah :("
+    }else {
+      return trees
+    }
   }
   dead_trees(){
     var trees = []
@@ -201,15 +211,19 @@ class TreeGrove {
         trees.push("Pohon " + this.groove[i]['buah']['name'])
       }
     }
-    return trees
+    if (trees.length === 0){
+      return "Pohon masih pada hidup XD"
+    }else {
+      return trees
+    }
   }
 }
 
 var arr = []
-arr.push(new AppleTree())//array ke 0
-arr.push(new PearTree())//array ke 1
-arr.push(new MangoTree())//array ke 2
-arr.push(new MangoTree())//array ke 3
+arr.push(new AppleTree(5))//array ke 0
+arr.push(new PearTree(3))//array ke 1
+arr.push(new MangoTree(8))//array ke 2
+arr.push(new MangoTree(7))//array ke 3
 // console.log(arr[1])
 
 var groove = new TreeGrove(arr)
@@ -226,4 +240,5 @@ do{
 
   console.log(groove.dead_trees());
 
+  console.log("<------------------------------------->")
 }while (arr[0].sehat != false || arr[1].sehat != false || arr[2].sehat != false || arr[3].sehat != false)
